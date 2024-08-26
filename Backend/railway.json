@@ -4,7 +4,7 @@
     "cmd": "npm install && npm run build"
   },
   "start": {
-    "cmd": "npm run start",
-    "base": "Backend"
+    "base": "Backend",
+    "cmd": "npm run start"
   }
 }

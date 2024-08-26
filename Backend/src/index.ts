@@ -16,7 +16,7 @@ import { seedInitialPizzas } from './service/pizzaService'
 dotenv.config()
 
 const app = express()
-const port = 5000;
+const PORT =  process.env.PORT || 5000;
 
 app.use(express.json())
 
@@ -41,6 +41,6 @@ seedInitialDrinks()
 seedInitialPizzas()
 
 
-app.listen(port, () =>{
-    console.log(`Server Is Running On Port ${port}`);
+app.listen(PORT, () =>{
+    console.log(`Server Is Running On Port ${PORT}`);
 });
