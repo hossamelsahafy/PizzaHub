@@ -138,9 +138,9 @@ router.post('/ResetPassword/:id/:token', async (req: Request, res: Response) => 
   if (!id || !token || !password) {
     return res.status(400).json({ status: "Missing required fields" });
   }
-
+  const jwtSecret = process.env.JWT_SECRET as string;
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, jwtSecret);
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const result = await userModel.findByIdAndUpdate(id, { password: hashedPassword }, { new: true });
@@ -151,9 +151,11 @@ router.post('/ResetPassword/:id/:token', async (req: Request, res: Response) => 
     res.status(200).json({ status: "Success" });
 
   } catch (error) {
-    if (error.name === 'JsonWebTokenError') {
+    if(error instanceof Error){
+      if (error.name === 'JsonWebTokenError') {
       return res.status(400).json({ status: "Invalid token" });
     }
+  }
 
     console.error('Error during password reset:', error);
     res.status(500).json({ status: "Error during password reset" });

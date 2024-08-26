@@ -3,15 +3,25 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import crypto from 'crypto';
 import VreifyEmail from "../MiddleWares/SendVrifyMail";
-const  Token = require('../models/token');
+const Token = require('../models/token');
 
-const generateToken = () => crypto.randomBytes(20).toString('hex');
+// Function to generate a token
+const generateToken = (): string => crypto.randomBytes(20).toString('hex');
 
-const generateJWT = (data) => {
+// Function to generate a JWT token
+const generateJWT = (data: object): string => {
     return jwt.sign(data, process.env.JWT_SECRET || "default_secret_key", { expiresIn: "24h" });
 };
 
-export const register = async ({ name, email, phoneNumber, password }) => {
+// Interface for the register parameters
+interface RegisterParams {
+    name: string;
+    email: string;
+    phoneNumber: string;
+    password: string;
+}
+
+export const register = async ({ name, email, phoneNumber, password }: RegisterParams) => {
     const findUserByEmail = await userModel.findOne({ email });
     if (findUserByEmail) {
         return { data: "Email Already Exists!", statusCode: 400 };
@@ -53,7 +63,13 @@ export const register = async ({ name, email, phoneNumber, password }) => {
     return { data: "Verification email sent. Please check your inbox.", statusCode: 200 };
 };
 
-export const signin = async ({ email, password }) => {
+// Interface for the signin parameters
+interface SigninParams {
+    email: string;
+    password: string;
+}
+
+export const signin = async ({ email, password }: SigninParams) => {
   try {
       // Find the user by email
       const findUser = await userModel.findOne({ email });
@@ -98,7 +114,7 @@ export const signin = async ({ email, password }) => {
       }
 
       // Generate and return JWT token
-      const token = generatedJWT({
+      const token = generateJWT({
           name: findUser.name,
           email: findUser.email,
           phoneNumber: findUser.phoneNumber,
@@ -114,12 +130,7 @@ export const signin = async ({ email, password }) => {
   }
 };
 
-const generatedJWT = (data: any) => {
-  return jwt.sign(data, process.env.JWT_SECRET || "default_secret_key", {
-    expiresIn: "24h",
-  });
-};
-
+// Interface for update user parameters
 interface UpdateUserParams {
   userId: string;
   name?: string;
@@ -128,8 +139,6 @@ interface UpdateUserParams {
   currentPassword?: string;
   newPassword?: string;
 }
-
-
 
 export const updateUser = async ({
   userId,
@@ -194,11 +203,9 @@ export const updateUser = async ({
       user.password = await bcrypt.hash(newPassword, 10);
     }
 
-
     await user.save();
 
     // Generate JWT token with updated user data
-
     const token = generateJWT({
       name: user.name,
       email: user.email,
@@ -232,7 +239,12 @@ export const updateUser = async ({
   }
 };
 
-export const resendVerificationEmail = async (email) => {
+// Interface for resend verification email parameter
+interface ResendVerificationEmailParams {
+  email: string;
+}
+
+export const resendVerificationEmail = async ({ email }: ResendVerificationEmailParams) => {
   try {
     // Find the user by email
     const user = await userModel.findOne({ email });
@@ -271,7 +283,7 @@ export const resendVerificationEmail = async (email) => {
 
     return { data: "Verification email sent. Please check your inbox.", statusCode: 200 };
   } catch (error) {
-    console.error('Error resending verification email:', error);
+    console.error('Error sending verification email:', error);
     return { data: "Server error", statusCode: 500 };
   }
 };

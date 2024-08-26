@@ -3,13 +3,24 @@ import { sendEmail } from '../MiddleWares/SendEmail';
 import { CartModel } from '../models/cartModel';
 import OrderModel from '../models/orderModel';
 
+interface Item {
+    itemId: string;
+    title: string;
+    quantity: number;
+    totalPrice: number;
+    size?: string;
+    pizza?: string;
+    drink?: string;
+    appetizers?: string;
+}
+
 interface OrderDetails {
     userId: string;
     name: string;
     email: string;
     phoneNumber: string;
     address: string;
-    items: any
+    items: Item[];
 }
 
 const confirmOrder = async (orderDetails: OrderDetails) => {
@@ -32,7 +43,7 @@ const confirmOrder = async (orderDetails: OrderDetails) => {
         <ul>
             ${items.map(item => `
                 <li>
-                    ${item.size ? 'Pizza: ' : item.drink ? 'Drink: ' : item.appetizers ? 'Appetizer: ' : ''}${item.title} 
+                    ${item.pizza ? 'Pizza: ' : item.drink ? 'Drink: ' : item.appetizers ? 'Appetizer: ' : ''}${item.title} 
                     ${item.size ? `(Size: ${item.size})` : ''}
                     - Quantity: ${item.quantity}
                     - Price: ${item.totalPrice}
@@ -71,11 +82,11 @@ const confirmOrder = async (orderDetails: OrderDetails) => {
         // Optionally clear the cart if needed
         await clearUserCart(userId);
 
-        return { message: 'Order confirmed and email sent' }; // Success message
+        return { message: 'Order confirmed and email sent' };
     } catch (error) {
-        console.error('Error processing order:', error);
-        return { message: 'Error processing order' }; // Error message
+        // console.error('Error processing order:', error);
+        return { message: 'Error processing order' };
     }
 };
 
-export default confirmOrder
+export default confirmOrder;
