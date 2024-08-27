@@ -1,6 +1,6 @@
 export const fetchContact = async (contactData) => {
     try {
-        const res = await fetch('http://localhost:5000/contact', {
+        const res = await fetch('https://pizzahub.me:5000/contact', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

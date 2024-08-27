@@ -1,6 +1,6 @@
 import { useAuth } from "../Components/Context/AuthContext";
 
-const API_BASE_URL = 'http://localhost:5000';
+const API_BASE_URL = 'https://pizzahub.me:5000';
 
 interface ICartItem {
     id: string;
