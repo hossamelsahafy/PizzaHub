@@ -12,7 +12,6 @@ const Email = () => {
         const verifyEmail = async () => {
             try {
                 const url = `https://pizzahub.me:5000/users/${id}/verify/${token}`;
-                
                 const { status } = await axios.get(url);
                 
                 if (status === 200) {
@@ -22,7 +21,6 @@ const Email = () => {
                 }
             } catch (error) {
                 if (error.response) {
-                    // Handle specific status codes
                     console.error('Error response:', error.response.data);
                     console.error('Status code:', error.response.status);
                     console.error('Headers:', error.response.headers);
