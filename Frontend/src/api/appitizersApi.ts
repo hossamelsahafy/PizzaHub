@@ -8,6 +8,6 @@ export const fetchAppitizer = async () => {
         return data;
     } catch (error) {
         console.error('Failed to fetch appetizer:', error);
-        return null;
+        return null;  // comment
     }
 }
