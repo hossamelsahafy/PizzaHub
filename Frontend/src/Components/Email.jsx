@@ -11,7 +11,7 @@ const Email = () => {
     useEffect(() => {
         const verifyEmail = async () => {
             try {
-                const url = `https://pizza-hub-peach.vercel.app/users/${id}/verify/${token}`;
+                const url = `https://pizzahub.me:5000/users/66cd59d6335e3b0e464da72b/verify/a72b4b8fad812fec07081d402d63bf4cbbdb007f`;
                 const { status } = await axios.get(url);
                 
                 if (status === 200) {
