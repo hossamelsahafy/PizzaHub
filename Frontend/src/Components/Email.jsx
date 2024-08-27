@@ -11,7 +11,7 @@ const Email = () => {
     useEffect(() => {
         const verifyEmail = async () => {
             try {
-                const url = `https://pizzahub.me/users/${id}/verify/${token}`;
+                const url = `https://pizzahub.me:5000/users/${id}/verify/${token}`;
                 const { status } = await axios.get(url);
                 
                 if (status === 200) {
