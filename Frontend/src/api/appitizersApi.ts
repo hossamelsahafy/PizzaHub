@@ -1,6 +1,6 @@
 export const fetchAppitizer = async () => {
     try {
-        const res = await fetch('http://64.227.119.208:5000/appitizers');
+        const res = await fetch('https://64.227.119.208:5000/appitizers');
         if (!res.ok) {
             throw new Error(`HTTP error! status: ${res.status}`);
         }
