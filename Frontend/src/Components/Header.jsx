@@ -38,6 +38,7 @@ const Header = () => {
       }
     `;
   };
+  // commment
   useEffect(() => {
     const style = document.createElement('style');
     style.innerHTML = createFadeAnimation();

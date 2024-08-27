@@ -1,6 +1,6 @@
 export const fetchAppitizer = async () => {
     try {
-        const res = await fetch('https://www.pizzahub.me/appitizer');
+        const res = await fetch('/appitizer');
         if (!res.ok) {
             throw new Error(`HTTP error! status: ${res.status}`);
         }
