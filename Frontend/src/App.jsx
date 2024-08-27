@@ -49,7 +49,7 @@ const App = () => {
         <Route path="/ResetPassword/:id/:token" element={<ResetPassword/>} />
         <Route path="/success" element={<Success />} />
         <Route path="/successOrder" element={<SuccessOrder/>} />
-        <Route path="users/id/verifyUpdateEmail/token" element={<UpdateEmailvrefy/>} />
+        <Route path="users/:id/verifyUpdateEmail/:token" element={<UpdateEmailvrefy/>} />
       </Routes>
     </Router>
     </AuthProvider>
