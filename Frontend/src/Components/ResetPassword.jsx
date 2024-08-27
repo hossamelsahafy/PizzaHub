@@ -29,7 +29,7 @@ const ResetPassword = () => {
     const data = { password };
 
     try {
-      const response = await axios.post(`http://localhost:5000/users/ResetPassword/${id}/${token}`, data);
+      const response = await axios.post(`https://pizzahub.me:5000/users/ResetPassword/${id}/${token}`, data);
 
       if (response.status === 200) {
         setMessageType('success');

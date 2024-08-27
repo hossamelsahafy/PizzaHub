@@ -17,7 +17,7 @@ const UserAPI = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get('http://localhost:5000/users')
+      .get('https://pizzahub.me:5000/users')
       .then((res) => {
         setUsers(res.data.data);
         setFilteredUsers(res.data.data);

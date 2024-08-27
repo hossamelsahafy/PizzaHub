@@ -64,7 +64,7 @@ const Dashboard = () => {
           totalPrice: item.price * item.quantity
         }));
         const response = await axios.post(
-          'http://localhost:5000/confirm/order',
+          'https://pizzahub.me:5000/confirm/order',
           {
             name: userInfo.name,
             email: name,

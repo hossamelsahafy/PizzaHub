@@ -25,7 +25,7 @@ const Account = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/users/account', {
+        const response = await axios.get('https://pizzahub.me:5000/users/account', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -55,7 +55,7 @@ const Account = () => {
 
   const handleUpdateData = async () => {
     try {
-      const response = await axios.put('http://localhost:5000/users/account', {
+      const response = await axios.put('https://pizzahub.me:5000/users/account', {
         name: formValues.name || undefined,
         email: formValues.email || undefined,
         phoneNumber: formValues.phone || undefined,
@@ -112,7 +112,7 @@ const Account = () => {
 
   const handleDeleteAccount = async () => {
     try {
-      await axios.delete('http://localhost:5000/users/account', {
+      await axios.delete('https://pizzahub.me:5000/users/account', {
         headers: {
           Authorization: `Bearer ${token}`,
         },

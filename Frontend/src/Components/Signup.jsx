@@ -65,7 +65,7 @@ const Signup = () => {
 
   const resendVerificationEmail = async (email) => {
     try {
-      const response = await axios.post('http://localhost:5000/users/resend-verification-email', { email });
+      const response = await axios.post('https://pizzahub.me:5000/users/resend-verification-email', { email });
       return response.data;
     } catch (error) {
       console.error('Error resending verification email:', error);
@@ -88,7 +88,7 @@ const Signup = () => {
       };
 
       try {
-        const response = await axios.post('http://localhost:5000/users/signup', data);
+        const response = await axios.post('https://pizzahub.me:5000/users/signup', data);
         if (response.status === 200) {
           setIsAuthenticated(true);
           setMessageType('success');
@@ -170,7 +170,7 @@ const Signup = () => {
       };
   
       try {
-        const response = await axios.post('http://localhost:5000/users/signin', data);        
+        const response = await axios.post('https://pizzahub.me:5000/users/signin', data);        
         if (response.status === 200) {
           const token = response.data;
           

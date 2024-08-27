@@ -17,7 +17,7 @@ const LoginCallback = () => {
         const email = urlParams.get('email');
 
         if (token && email) {
-          const response = await axios.post('http://localhost:5000/users/signin', { token, email });
+          const response = await axios.post('https://pizzahub.me:5000/users/signin', { token, email });
 
           if (response.status === 200) {
             const { token: apiToken } = response.data;
